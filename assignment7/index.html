@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>图书管理系统</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <img src="images/bg.png" alt="Background">
+        <div class="exit-and-manage">
+            <a href="#">退出系统</a>
+            <a href="#">页面管理</a>
+            <a href="#">风格管理</a>
+        </div>
+        <div class="signup-and-login">
+            <a href="signUp.html">注册</a><a href="login.html">登录</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="side-bar">
+            <div class="category">图书目录</div>
+            <div class="items">
+                <button>全部</button>
+                <button>计算机类</button>
+                <button>文学类</button>
+                <button>数学类</button>
+                <button>政治类</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content-header">
+                <div class="search-bar">
+                    <input type="text" placeholder="输入书名">
+                    <button>书名查找</button>
+                </div>
+                <div class="rightBtn">
+                    <button class="delete">删除</button>
+                    <button class="add">新书录入</button>
+                </div>
+            </div>
+            <div class=" content-main">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>书名</th>
+                            <th>价格</th>
+                            <th>数量</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="overlay">
+        <form action="" autocomplete="off">
+            <input type="text" name="bookName" placeholder="请输入书名">
+            <input type="text" name="price" placeholder="请输入价格">
+            <input type="text" name="quantity" placeholder="请输入数量">
+            <button>确认</button>
+            <button class="cancel">取消</button>
+        </form>
+    </div>
+    <script>
+        const overlay = document.querySelector(".overlay")
+        const addBtn = document.querySelector(".add")
+        addBtn.addEventListener("click", function () {
+            overlay.style.display = "block"
+        })
+
+        const tbody = document.querySelector("tbody")
+        const bookNameInput = document.querySelector("[name=bookName]")
+        const priceInput = document.querySelector("[name=price]")
+        const quantityInput = document.querySelector("[name=quantity]")
+        const items = document.querySelectorAll("[name]")
+        const data = [
+            {
+                bookName: "C语言程序设计",
+                price: 30,
+                quantity: 31
+            },
+            {
+                bookName: "Java程序设计",
+                price: 30,
+                quantity: 31
+            },
+            {
+                bookName: "Python程序设计",
+                price: 30,
+                quantity: 31
+            },
+            {
+                bookName: "数据结构与算法",
+                price: 40,
+                quantity: 21
+            },
+            {
+                bookName: "计算机组成原理",
+                price: 40,
+                quantity: 21
+            },
+            {
+                bookName: "Web前端开发技术",
+                price: 40,
+                quantity: 1
+            },
+            {
+                bookName: "数据库系统原理",
+                price: 40,
+                quantity: 11
+            },
+            {
+                bookName: "操作系统",
+                price: 40,
+                quantity: 41
+            },
+            {
+                bookName: "计算机网络",
+                price: 40,
+                quantity: 41
+            }
+        ]
+        const form = document.querySelector("form")
+        form.addEventListener("submit", function (e) {
+            e.preventDefault()
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].value === "") {
+                    alert("输入内容不能为空")
+                    return
+                }
+            }
+            const obj = {
+                bookName: bookNameInput.value,
+                price: priceInput.value,
+                quantity: quantityInput.value
+            }
+            data.push(obj)
+            this.reset()
+            render()
+            overlay.style.display = "none"
+        })
+        onload = render()
+        function render() {
+            tbody.innerHTML = ""
+            for (let i = 0; i < data.length; i++) {
+                const tr = document.createElement("tr")
+                tr.innerHTML = `
+          <td>${data[i].bookName}</td>
+          <td>${data[i].price}</td>
+          <td>${data[i].quantity}</td>
+          <td><a href="#">编辑</a><a href="#">删除</a></td>
+        `
+                tbody.appendChild(tr)
+            }
+        }
+
+        const deleteBtn = document.querySelector(".delete")
+        deleteBtn.addEventListener("click", function () {
+            if (data.length === 0) {
+                alert("表格为空，删除失败")
+                return
+            }
+            data.pop()
+            render()
+        })
+
+        const cancelBtn = document.querySelector(".cancel")
+        cancelBtn.addEventListener("click", function (e) {
+            overlay.style.display = "none"
+            e.preventDefault()
+        })
+    </script>
+</body>
+
+</html>
