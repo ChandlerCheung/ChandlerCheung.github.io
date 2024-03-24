@@ -26,11 +26,11 @@
         <div class="side-bar">
             <div class="category">图书目录</div>
             <div class="items">
-                <button>全部</button>
-                <button>计算机类</button>
-                <button>文学类</button>
-                <button>数学类</button>
-                <button>政治类</button>
+                <button class="filter" data-category="all">全部</button>
+                <button class="filter" data-category="计算机类">计算机类</button>
+                <button class="filter" data-category="文学类">文学类</button>
+                <button class="filter" data-category="数学类">数学类</button>
+                <button class="filter" data-category="政治类">政治类</button>
             </div>
         </div>
         <div class="content">
@@ -65,71 +65,110 @@
             <input type="text" name="bookName" placeholder="请输入书名">
             <input type="text" name="price" placeholder="请输入价格">
             <input type="text" name="quantity" placeholder="请输入数量">
-            <button>确认</button>
+            <select name="category">
+                <option value="">请选择类别</option>
+                <option value="计算机类">计算机类</option>
+                <option value="文学类">文学类</option>
+                <option value="数学类">数学类</option>
+                <option value="政治类">政治类</option>
+            </select>
+            <button class="add-confirm">确认</button>
+            <button class="modify-confirm">确认</button>
             <button class="cancel">取消</button>
         </form>
     </div>
     <script>
         const overlay = document.querySelector(".overlay")
+        const addConfirmBtn = document.querySelector(".add-confirm")
+        const modifyConfirmBtn = document.querySelector(".modify-confirm")
         const addBtn = document.querySelector(".add")
-        addBtn.addEventListener("click", function () {
-            overlay.style.display = "block"
-        })
-
+        const form = document.querySelector("form")
         const tbody = document.querySelector("tbody")
         const bookNameInput = document.querySelector("[name=bookName]")
         const priceInput = document.querySelector("[name=price]")
         const quantityInput = document.querySelector("[name=quantity]")
+        const categorySelect = document.querySelector("[name=category]")
         const items = document.querySelectorAll("[name]")
         const data = [
             {
                 bookName: "C语言程序设计",
                 price: 30,
-                quantity: 31
+                quantity: 31,
+                category: "计算机类"
             },
             {
                 bookName: "Java程序设计",
                 price: 30,
-                quantity: 31
+                quantity: 31,
+                category: "计算机类"
             },
             {
                 bookName: "Python程序设计",
                 price: 30,
-                quantity: 31
+                quantity: 31,
+                category: "计算机类"
             },
             {
                 bookName: "数据结构与算法",
                 price: 40,
-                quantity: 21
+                quantity: 21,
+                category: "计算机类"
             },
             {
                 bookName: "计算机组成原理",
                 price: 40,
-                quantity: 21
+                quantity: 21,
+                category: "计算机类"
             },
             {
                 bookName: "Web前端开发技术",
                 price: 40,
-                quantity: 1
+                quantity: 1,
+                category: "计算机类"
             },
             {
                 bookName: "数据库系统原理",
                 price: 40,
-                quantity: 11
+                quantity: 11,
+                category: "计算机类"
             },
             {
-                bookName: "操作系统",
-                price: 40,
-                quantity: 41
+                bookName: "了不起的盖茨比",
+                price: 45,
+                quantity: 10,
+                category: "文学类"
             },
             {
-                bookName: "计算机网络",
-                price: 40,
-                quantity: 41
+                bookName: "微积分",
+                price: 50,
+                quantity: 12,
+                category: "数学类"
+            },
+            {
+                bookName: "线性代数",
+                price: 45,
+                quantity: 18,
+                category: "数学类"
+            },
+            {
+                bookName: "概率论与数理统计",
+                price: 55,
+                quantity: 20,
+                category: "数学类"
+            },
+            {
+                bookName: "马克思主义基本原理",
+                price: 30,
+                quantity: 25,
+                category: "政治类"
             }
         ]
-        const form = document.querySelector("form")
-        form.addEventListener("submit", function (e) {
+        addBtn.addEventListener("click", function () {
+            overlay.style.display = "block"
+            addConfirmBtn.style.display = "block"
+            modifyConfirmBtn.style.display = "none"
+        })
+        addConfirmBtn.addEventListener("click", function (e) {
             e.preventDefault()
             for (let i = 0; i < items.length; i++) {
                 if (items[i].value === "") {
@@ -140,42 +179,93 @@
             const obj = {
                 bookName: bookNameInput.value,
                 price: priceInput.value,
-                quantity: quantityInput.value
+                quantity: quantityInput.value,
+                category: categorySelect.value
             }
             data.push(obj)
-            this.reset()
-            render()
+            form.reset()
+            render(data)
             overlay.style.display = "none"
         })
-        onload = render()
-        function render() {
+        modifyConfirmBtn.addEventListener("click", function (e) {
+            e.preventDefault()
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].value === "") {
+                    alert("输入内容不能为空")
+                    return
+                }
+            }
+            const obj = {
+                bookName: bookNameInput.value,
+                price: priceInput.value,
+                quantity: quantityInput.value,
+                category: categorySelect.value
+            }
+            data[e.target.dataset.id] = obj
+            form.reset()
+            render(data)
+            overlay.style.display = "none"
+        })
+        onload = render(data)
+        function render(data) {
             tbody.innerHTML = ""
             for (let i = 0; i < data.length; i++) {
                 const tr = document.createElement("tr")
+                tr.dataset.id = i
                 tr.innerHTML = `
-          <td>${data[i].bookName}</td>
-          <td>${data[i].price}</td>
-          <td>${data[i].quantity}</td>
-          <td><a href="#">编辑</a><a href="#">删除</a></td>
-        `
+                <td>${data[i].bookName}</td>
+                <td>${data[i].price}</td>
+                <td>${data[i].quantity}</td>
+                <td><a href="#" class="modify-book">编辑</a><a href="#" class="delete-book">删除</a></td>`
                 tbody.appendChild(tr)
             }
         }
-
-        const deleteBtn = document.querySelector(".delete")
-        deleteBtn.addEventListener("click", function () {
-            if (data.length === 0) {
-                alert("表格为空，删除失败")
+        tbody.addEventListener("click", function (e) {
+            if (e.target.className === "delete-book") {
+                data.splice(e.target.parentElement.parentElement.dataset.id, 1)
+                render(data)
                 return
             }
-            data.pop()
-            render()
+            if (e.target.className === "modify-book") {
+                overlay.style.display = "block"
+                addConfirmBtn.style.display = "none"
+                modifyConfirmBtn.style.display = "block"
+                modifyConfirmBtn.dataset.id = e.target.parentElement.parentElement.dataset.id
+            }
+            if (e.target.tagName === "TD") {
+                e.target.parentElement.classList.toggle("selected")
+            }
+        })
+        const deleteBtn = document.querySelector(".delete")
+        deleteBtn.addEventListener("click", function () {
+            const selectedTrs = document.querySelectorAll(".selected")
+            if (selectedTrs.length === 0) {
+                alert("请选择要删除的书籍")
+                return
+            }
+            selectedTrs.forEach(selectedTr => {
+                data.splice(selectedTr.dataset.id, 1)
+            })
+            render(data)
         })
 
         const cancelBtn = document.querySelector(".cancel")
         cancelBtn.addEventListener("click", function (e) {
             overlay.style.display = "none"
             e.preventDefault()
+        })
+
+        const filterBtns = document.querySelectorAll(".filter")
+        filterBtns.forEach(button => {
+            button.addEventListener("click", function () {
+                const category = this.dataset.category
+                if (category === "all") {
+                    render(data)
+                    return
+                }
+                const filteredData = data.filter(item => item.category === category)
+                render(filteredData)
+            })
         })
     </script>
 </body>
