@@ -6,90 +6,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <title>图书管理系统</title>
 </head>
 
 <body>
-
-    <div class="header">
-        <img src="images/bg.png" alt="Background">
-        <div class="exit-and-manage">
-            <a href="#">退出系统</a>
-            <a href="#">页面管理</a>
-            <a href="#">风格管理</a>
-        </div>
-        <div class="signup-and-login">
-            <a href="signUp.html">注册</a><a href="login.html">登录</a>
-        </div>
-    </div>
-    <div class="main">
-        <div class="side-bar">
-            <div class="category">图书目录</div>
-            <div class="items">
-                <button class="filter" data-category="all">全部</button>
-                <button class="filter" data-category="计算机类">计算机类</button>
-                <button class="filter" data-category="文学类">文学类</button>
-                <button class="filter" data-category="数学类">数学类</button>
-                <button class="filter" data-category="政治类">政治类</button>
+    <div id="app">
+        <div class="header">
+            <img src="images/index.png" alt="Background">
+            <div class="exit-and-manage">
+                <a href="#">退出系统</a>
+                <a href="#">页面管理</a>
+                <a href="#">风格管理</a>
+            </div>
+            <div class="signup-and-login">
+                <a href="signUp.html">注册</a><a href="login.html">登录</a>
             </div>
         </div>
-        <div class="content">
-            <div class="content-header">
-                <div class="search-bar">
-                    <input type="text" placeholder="输入书名">
-                    <button>书名查找</button>
-                </div>
-                <div class="rightBtn">
-                    <button class="delete">删除</button>
-                    <button class="add">新书录入</button>
+        <div class="main">
+            <div class="side-bar">
+                <div class="category">图书目录</div>
+                <div class="items">
+                    <button class="filter" data-category="all">全部</button>
+                    <button class="filter" data-category="计算机类">计算机类</button>
+                    <button class="filter" data-category="文学类">文学类</button>
+                    <button class="filter" data-category="数学类">数学类</button>
+                    <button class="filter" data-category="政治类">政治类</button>
                 </div>
             </div>
-            <div class=" content-main">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>书名</th>
-                            <th>价格</th>
-                            <th>数量</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+            <div class="content">
+                <div class="content-header">
+                    <div class="shell">
+                        <div class="search-bar">
+                            <input type="text" name="search" placeholder="Search">
+                            <a href="#" class="search">
+                                <i class="fa fa-hand-o-right"></i>
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </div>
+                        <div class="rightBtn">
+                            <ul>
+                                <li><a href="#" class="sort" onclick="event.preventDefault()">价格<span class="ascIcon"><i class="fa fa-sort-asc"></i></span><span class="descIcon"><i class="fa fa-sort-desc"></i></span></a></li>
+                                <li><a href="#" class="delete">一键删除</a></li>
+                                <li><a href="#" class="add">新书录入</a></li>
+                                <div class="rightBtn-box"></div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class=" content-main">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>书名</th>
+                                <th>价格</th>
+                                <th>数量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="content-footer">
+                    <form action="" autocomplete="off" class="pageForm">
+                        <span>第</span><input type="text" name="numberPage">页
+                        <button class="go">go</button>
+                        <button class="lastPage">上一页</button>
+                        <button class="nextPage">下一页</button>
+                        每页显示<input type="text" name="recordsPerPage">条记录
+                        <button class="setPage">设定</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="overlay">
-        <form action="" autocomplete="off">
-            <input type="text" name="bookName" placeholder="请输入书名">
-            <input type="text" name="price" placeholder="请输入价格">
-            <input type="text" name="quantity" placeholder="请输入数量">
-            <select name="category">
-                <option value="">请选择类别</option>
-                <option value="计算机类">计算机类</option>
-                <option value="文学类">文学类</option>
-                <option value="数学类">数学类</option>
-                <option value="政治类">政治类</option>
-            </select>
-            <button class="add-confirm">确认</button>
-            <button class="modify-confirm">确认</button>
-            <button class="cancel">取消</button>
-        </form>
+        <div class="footer">
+            <span>CopyRight@张佳宏</span>
+        </div>
+        <div class="overlay">
+            <form action="" autocomplete="off" class="overlayForm">
+                <input type="text" name="bookName" placeholder="请输入书名">
+                <input type="text" name="price" placeholder="请输入价格">
+                <input type="text" name="quantity" placeholder="请输入数量">
+                <select name="category">
+                    <option value="">请选择类别</option>
+                    <option value="计算机类">计算机类</option>
+                    <option value="文学类">文学类</option>
+                    <option value="数学类">数学类</option>
+                    <option value="政治类">政治类</option>
+                </select>
+                <button class="add-confirm">确认</button>
+                <button class="modify-confirm">确认</button>
+                <button class="cancel">取消</button>
+            </form>
+        </div>
     </div>
     <script>
         const overlay = document.querySelector(".overlay")
         const addConfirmBtn = document.querySelector(".add-confirm")
         const modifyConfirmBtn = document.querySelector(".modify-confirm")
         const addBtn = document.querySelector(".add")
-        const form = document.querySelector("form")
+        const overlayForm = document.querySelector(".overlayForm")
         const tbody = document.querySelector("tbody")
         const bookNameInput = document.querySelector("[name=bookName]")
         const priceInput = document.querySelector("[name=price]")
         const quantityInput = document.querySelector("[name=quantity]")
         const categorySelect = document.querySelector("[name=category]")
         const items = document.querySelectorAll("[name]")
-        const data = [
+        const nextPageBtn = document.querySelector(".nextPage")
+        const lastPageBtn = document.querySelector(".lastPage")
+        const goBtn = document.querySelector(".go")
+        const setPageBtn = document.querySelector(".setPage")
+        const numberPageInput = document.querySelector("[name=numberPage]")
+        const recordsPerPageInput = document.querySelector("[name=recordsPerPage]")
+        let currentPage = 1
+        let recordsPerPage = 5
+        let currentCategory = "all"
+        let keyword = "all"
+        const initialData = [
             {
                 bookName: "C语言程序设计",
                 price: 30,
@@ -163,6 +197,10 @@
                 category: "政治类"
             }
         ]
+        /* localStorage.setItem("book-data", JSON.stringify(initialData)) */
+        let data = localStorage.getItem('book-data')
+        const arr = data ? JSON.parse(data) : []
+        render()
         addBtn.addEventListener("click", function () {
             overlay.style.display = "block"
             addConfirmBtn.style.display = "block"
@@ -182,9 +220,10 @@
                 quantity: quantityInput.value,
                 category: categorySelect.value
             }
-            data.push(obj)
-            form.reset()
-            render(data)
+            arr.push(obj)
+            localStorage.setItem('book-data', JSON.stringify(arr))
+            overlayForm.reset()
+            render()
             overlay.style.display = "none"
         })
         modifyConfirmBtn.addEventListener("click", function (e) {
@@ -201,32 +240,94 @@
                 quantity: quantityInput.value,
                 category: categorySelect.value
             }
-            data[e.target.dataset.id] = obj
-            form.reset()
-            render(data)
+            arr[e.target.dataset.id] = obj
+            localStorage.setItem('book-data', JSON.stringify(arr))
+            overlayForm.reset()
+            render()
             overlay.style.display = "none"
         })
-        onload = render(data)
-        function render(data) {
-            tbody.innerHTML = ""
-            for (let i = 0; i < data.length; i++) {
-                const tr = document.createElement("tr")
-                tr.dataset.id = i
-                tr.innerHTML = `
-                <td>${data[i].bookName}</td>
-                <td>${data[i].price}</td>
-                <td>${data[i].quantity}</td>
-                <td><a href="#" class="modify-book">编辑</a><a href="#" class="delete-book">删除</a></td>`
-                tbody.appendChild(tr)
+        nextPageBtn.addEventListener("click", function (e) {
+            e.preventDefault()
+            currentPage++
+            render()
+        })
+        lastPageBtn.addEventListener("click", function (e) {
+            e.preventDefault()
+            currentPage--
+            render()
+        })
+        goBtn.addEventListener("click", function (e) {
+            e.preventDefault()
+            const pageNumber = parseInt(numberPageInput.value)
+            const totalPages = Math.ceil(arr.length / recordsPerPage)
+            if (pageNumber >= 1 && pageNumber <= totalPages) {
+                currentPage = pageNumber
+                render()
+            } else {
+                alert("请输入有效的页码")
+            }
+        })
+        setPageBtn.addEventListener("click", function (e) {
+            e.preventDefault()
+            const newRecordsPerPage = parseInt(recordsPerPageInput.value)
+            if (newRecordsPerPage > 0) {
+                recordsPerPage = newRecordsPerPage
+                currentPage = 1
+                render()
+            } else {
+                alert("请输入有效的记录数")
+            }
+        })
+        function render() {
+            const startIndex = (currentPage - 1) * recordsPerPage
+            const endIndex = startIndex + recordsPerPage
+            const filteredData = arr.filter(item => (keyword === "all" || item.bookName.toLowerCase().includes(keyword.toLowerCase())) && (currentCategory === "all" || item.category === currentCategory))
+            const currentPageData = filteredData.slice(startIndex, endIndex)
+            const trArr = currentPageData.map(function (item) {
+                return `
+            <tr data-id=${arr.indexOf(item)}>
+                <td>${item.bookName}</td>
+                <td>${item.price}</td>
+                <td>${item.quantity}</td>
+                <td><a href="#" class="modify-book">编辑</a><a href="#" class="delete-book">删除</a></td>
+            </tr> 
+        `
+            })
+            tbody.innerHTML = trArr.join("")
+            if(tbody.innerHTML === ""){
+                tbody.innerHTML = `
+            <tr>
+                <td>没有找到对应的书籍</td>
+                <td>(。﹏。*)</td>
+                <td>（。・＿・。）ﾉ</td>
+                <td>o(￣┰￣*)ゞ</td>
+            </tr> 
+        `
+            }
+            const totalPages = Math.ceil(filteredData.length / recordsPerPage)
+            numberPageInput.value = currentPage
+            recordsPerPageInput.value = recordsPerPage
+            if (currentPage === 1) {
+                lastPageBtn.disabled = true
+            } else {
+                lastPageBtn.disabled = false
+            }
+            if (currentPage === totalPages) {
+                nextPageBtn.disabled = true
+            } else {
+                nextPageBtn.disabled = false
             }
         }
         tbody.addEventListener("click", function (e) {
             if (e.target.className === "delete-book") {
-                data.splice(e.target.parentElement.parentElement.dataset.id, 1)
-                render(data)
+                e.preventDefault()
+                arr.splice(e.target.parentElement.parentElement.dataset.id, 1)
+                localStorage.setItem('book-data', JSON.stringify(arr))
+                render()
                 return
             }
             if (e.target.className === "modify-book") {
+                e.preventDefault()
                 overlay.style.display = "block"
                 addConfirmBtn.style.display = "none"
                 modifyConfirmBtn.style.display = "block"
@@ -237,16 +338,25 @@
             }
         })
         const deleteBtn = document.querySelector(".delete")
-        deleteBtn.addEventListener("click", function () {
+        deleteBtn.addEventListener("click", function (e) {
+            e.preventDefault()
             const selectedTrs = document.querySelectorAll(".selected")
             if (selectedTrs.length === 0) {
                 alert("请选择要删除的书籍")
                 return
             }
             selectedTrs.forEach(selectedTr => {
-                data.splice(selectedTr.dataset.id, 1)
+                index = selectedTr.dataset.id
+                arr.splice(index, 1)
+                document.querySelectorAll("tbody tr").forEach(tr => {
+                    const currentIndex = parseInt(tr.dataset.id)
+                    if (currentIndex > index) {
+                        tr.dataset.id = currentIndex - 1
+                    }
+                })
             })
-            render(data)
+            localStorage.setItem('book-data', JSON.stringify(arr))
+            render()
         })
 
         const cancelBtn = document.querySelector(".cancel")
@@ -256,16 +366,42 @@
         })
 
         const filterBtns = document.querySelectorAll(".filter")
+        const firstFilterBtn = document.querySelector("[data-category=all]")
+        firstFilterBtn.addEventListener("click", function () {
+            keyword = "all"
+            searchInput.value = ""
+        })
         filterBtns.forEach(button => {
             button.addEventListener("click", function () {
-                const category = this.dataset.category
-                if (category === "all") {
-                    render(data)
-                    return
-                }
-                const filteredData = data.filter(item => item.category === category)
-                render(filteredData)
+                currentPage = 1
+                currentCategory = this.dataset.category
+                render()
             })
+        })
+
+        const searchInput = document.querySelector("[name=search]")
+        const searchBtn = document.querySelector(".search")
+        searchBtn.addEventListener("click", function () {
+            keyword = searchInput.value.trim()
+            if (keyword === "") {
+                alert("请输入有效内容")
+                return
+            }
+            currentCategory = "all"
+            render()
+        })
+
+        const ascBtn = document.querySelector(".fa-sort-asc")
+        const descBtn = document.querySelector(".fa-sort-desc")
+        ascBtn.addEventListener("click", function (e) {
+            e.preventDefault()
+            arr.sort((a, b) => a.price - b.price)
+            render()
+        })
+        descBtn.addEventListener("click", function (e) {
+            e.preventDefault()
+            arr.sort((a, b) => b.price - a.price)
+            render()
         })
     </script>
 </body>
