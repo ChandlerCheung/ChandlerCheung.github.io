@@ -386,7 +386,8 @@
 
         const searchInput = document.querySelector("[name=search]")
         const searchBtn = document.querySelector(".search")
-        searchBtn.addEventListener("click", function () {
+        searchBtn.addEventListener("click", function (e) {
+            e.preventDefault()
             keyword = searchInput.value.trim()
             if (keyword === "") {
                 alert("请输入有效内容")
