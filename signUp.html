@@ -7,16 +7,23 @@
     <title>注册</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/signUp.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
 </head>
 
 <body>
-    <h2>注册</h2>
     <form action="" autocomplete="off">
+        <h2>SignUp</h2>
         <input type="text" name="username" placeholder="设置用户名">
         <span class="msg"></span>
-        <input type="password" name="password" placeholder="设置密码">
+        <div class="password-wrapper">
+            <input type="password" name="password" placeholder="设置密码">
+            <i class="fa fa-eye" id="password"></i>
+        </div>
         <span class="msg"></span>
-        <input type="password" name="confirm" placeholder="请再次输入上面密码">
+        <div class="confirm-wrapper">
+            <input type="password" name="confirm" placeholder="请再次输入上面密码">
+            <i class="fa fa-eye" id="confirm"></i>
+        </div>
         <span class="msg"></span>
         <input type="text" name="idCard" placeholder="请输入身份证号码">
         <span class="msg"></span>
@@ -56,11 +63,11 @@
                 <option value="+65">新加坡 +65</option>
                 <option value="+66">泰国 +66</option>
             </select>
-            <input type="tel" name="phone" placeholder="输入手机号码">
+            <input type="text" name="phone" placeholder="输入手机号码">
         </div>
         <span class="msg"></span>
         <div class="code-wrapper">
-            <input name="code" type="text" placeholder="短信验证码">
+            <input type="text" name="code" placeholder="短信验证码">
             <a class="code" href="#">发送验证码</a>
         </div>
         <span class="msg"></span>
@@ -104,11 +111,14 @@
         <select name="city">
             <option value="">请选择所在城市/区县</option>
         </select>
-        <span class="agree">
-            <input type="checkbox" id="agreeCheckbox">
-            <label for="agreeCheckbox">已阅读并同意</label>
-            <a href="#">《用户协议》</a> 和 <a href="#">《隐私政策》</a>
-        </span>
+        <div class="middle">
+            <div class="agree">
+                <input type="checkbox" id="agreeCheckbox">
+                <label for="agreeCheckbox">已阅读并同意</label>
+                <a href="#" class="agreeLink">《用户协议》</a> 和 <a href="#" class="agreeLink">《隐私政策》</a>
+            </div>
+            <a href="login.html" class="login">登录</a>
+        </div>
         <button>确认</button>
         <button class="cancel">取消</button>
     </form>
@@ -130,7 +140,7 @@
         const passwordInput = document.querySelector("[name=password]")
         passwordInput.addEventListener("change", verifyPwd)
         function verifyPwd() {
-            const span = passwordInput.nextElementSibling
+            const span = passwordInput.parentElement.nextElementSibling
             const reg = /^[a-zA-Z0-9_]{6,20}$/
             if (!reg.test(passwordInput.value)) {
                 span.innerText = "输入不合法,6~20位数字字母符号组成"
@@ -140,10 +150,18 @@
             return true
         }
 
+        const togglePassword = document.querySelector("#password");
+        togglePassword.addEventListener("click", function () {
+            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
+            passwordInput.setAttribute("type", type)
+            this.classList.toggle("fa-eye-slash")
+            this.classList.toggle("fa-eye")
+        })
+
         const confirmInput = document.querySelector("[name=confirm]")
         confirmInput.addEventListener("change", verifyConfirm)
         function verifyConfirm() {
-            const span = confirmInput.nextElementSibling
+            const span = confirmInput.parentElement.nextElementSibling
             if (confirmInput.value !== passwordInput.value) {
                 span.innerText = "两次密码输入不一致"
                 return false
@@ -151,6 +169,14 @@
             span.innerText = ""
             return true
         }
+
+        const toggleConfrimPassword = document.querySelector("#confirm");
+        toggleConfrimPassword.addEventListener("click", function () {
+            const type = confirmInput.getAttribute("type") === "password" ? "text" : "password"
+            confirmInput.setAttribute("type", type)
+            this.classList.toggle("fa-eye-slash")
+            this.classList.toggle("fa-eye")
+        })
 
         const idcardInput = document.querySelector("[name=idCard]")
         idcardInput.addEventListener("change", verifyidCard)
@@ -369,6 +395,7 @@
             location.href = "index.html"
             e.preventDefault()
         })
+
     </script>
 </body>
 
