@@ -197,7 +197,7 @@
                 category: "政治类"
             }
         ]
-        /* localStorage.setItem("book-data", JSON.stringify(initialData)) */
+        localStorage.setItem("book-data", JSON.stringify(initialData))
         let data = localStorage.getItem('book-data')
         const arr = data ? JSON.parse(data) : []
         render()
