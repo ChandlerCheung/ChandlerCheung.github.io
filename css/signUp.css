@@ -1,0 +1,151 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(../images/signUp.png);
+    background-size: cover
+}
+
+h2 {
+    font-size: 70px;
+    margin-bottom: 30px;
+    color: #fff;
+    text-shadow: 0 0 10px #ff9dff80
+}
+
+form {
+    width: 380px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffffff49;
+    border-radius: 50px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5) inset
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
+    border: 5px solid transparent;
+    background: rgba(255, 255, 255, .5);
+    border-radius: 100px;
+    padding: 5px 20px 0 20px;
+    transition: 0.3s;
+    font-size: 18px;
+    outline: none
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover,
+select:hover {
+    background: rgba(255, 255, 255, 0);
+    border: 5px solid #ffffff
+}
+
+button {
+    width: 100%;
+    border-radius: 80px;
+    padding: 10px 20px
+}
+
+select {
+    margin-bottom: 20px
+}
+
+.middle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%
+}
+
+.agree {
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.agreeLink {
+    font-size: 14px
+}
+
+.login {
+    font-size: 18px
+}
+
+a {
+    color: #7597ff
+}
+
+.msg {
+    color: #ff4d4f;
+    height: 20px;
+    font-size: 14px
+}
+
+.phoneAll {
+    display: flex
+}
+
+.phoneAll select {
+    margin-bottom: 0;
+    border-radius: 100px 0 0 100px;
+    width: 50%
+}
+
+.phoneAll input {
+    border-radius: 0 100px 100px 0;
+    width: 50%
+}
+
+.code-wrapper {
+    width: 100%;
+    position: relative
+}
+
+.code {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px
+}
+
+.password-wrapper {
+    width: 100%;
+    position: relative
+}
+
+.password-wrapper i {
+    position: absolute;
+    top: 10px;
+    cursor: pointer;
+    right: 20px;
+    font-size: 22px
+}
+
+.confirm-wrapper {
+    width: 100%;
+    position: relative
+}
+
+.confirm-wrapper i {
+    position: absolute;
+    top: 10px;
+    cursor: pointer;
+    right: 20px;
+    font-size: 22px
+}
